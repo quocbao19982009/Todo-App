@@ -1,0 +1,97 @@
+.todo_item {
+  display: flex;
+  outline: none;
+  border-bottom: 1px dotted #666;
+  height: 60px;
+  overflow: hidden;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 300;
+}
+
+@media (min-width: 33.75rem) {
+  .todo_item {
+    font-size: 1.5rem;
+  }
+}
+
+.cell:first-child,
+.cell:last-child {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.cell:first-child {
+  padding-right: 20px;
+}
+.cell:last-child {
+  gap: 8px;
+}
+
+.cell:nth-child(2) {
+  display: flex;
+  flex: 1 1 0%;
+  padding-right: 30px;
+  overflow: hidden;
+  align-items: center;
+}
+
+.title {
+  max-width: 100%;
+  line-height: 60px;
+  overflow: hidden;
+  outline: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: 0;
+  padding: 0;
+  border-radius: 40px;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.35rem;
+  background-color: #2a2a2a;
+  color: #555;
+  padding: 8px;
+}
+
+.icon:hover {
+  color: #999;
+  cursor: pointer;
+}
+
+.todo-item_completed .title {
+  color: #666;
+  text-decoration: line-through #85bf6b;
+}
+
+.todo-item_completed .checkIcon {
+  color: #85bf6b;
+}
+
+.hide {
+  display: none !important;
+}
+
+form {
+  width: 100%;
+}
+
+.input {
+  outline: none;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  height: 60px;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+}
