@@ -6,4 +6,10 @@ interface TodoModel {
   code?: string;
 }
 
+export enum filter {
+  all = "all",
+  active = "active",
+  completed = "completed",
+}
+
 export default TodoModel;

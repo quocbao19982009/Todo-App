@@ -8,10 +8,12 @@ import {
   checkTodoAPI,
 } from "../api/todoApi";
 
-import TodoModel from "../models/todo";
+import TodoModel, { filter } from "../models/todo";
 
 interface TodoContextInterface {
   todoList: TodoModel[];
+  filter: filter;
+  changeFilter: (filterOrder: filter) => void;
   getTodo: () => void;
   addTodo: (todo: TodoModel) => void;
   removeTodo: (id: string) => void;
@@ -21,6 +23,8 @@ interface TodoContextInterface {
 
 export const TodoContext = createContext<TodoContextInterface>({
   todoList: [],
+  filter: filter.all,
+  changeFilter: (filterOrder: filter) => {},
   getTodo: () => {},
   addTodo: (todo: TodoModel) => {},
   removeTodo: (id: string) => {},
@@ -30,6 +34,11 @@ export const TodoContext = createContext<TodoContextInterface>({
 
 const TodoContextProvider: React.FC = (props) => {
   const [todos, setTodos] = useState<TodoModel[]>([]);
+  const [filterOrder, setFilterOrder] = useState<filter>(filter.all);
+
+  const changeFilterHandler = (filterOrder: filter) => {
+    setFilterOrder(filterOrder);
+  };
 
   const getTodoHandler = async () => {
     const loadedTodos = await getTodosAPI();
@@ -78,6 +87,8 @@ const TodoContextProvider: React.FC = (props) => {
 
   const todoContextValue: TodoContextInterface = {
     todoList: todos,
+    filter: filterOrder,
+    changeFilter: changeFilterHandler,
     getTodo: getTodoHandler,
     addTodo: addTodoHandler,
     removeTodo: removeTodoHanlder,

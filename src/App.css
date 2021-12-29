@@ -35,3 +35,13 @@ main {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+footer {
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  /* Height of the footer*/
+  height: 40px;
+}

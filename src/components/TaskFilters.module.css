@@ -1,0 +1,35 @@
+.task-filters {
+  margin-bottom: 45px;
+  padding-left: 1px;
+  font-size: 1rem;
+  line-height: 24px;
+  list-style-type: none;
+}
+.task-filters:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+@media screen and (min-width: 33.75em) {
+  .task-filters {
+    margin-bottom: 55px;
+  }
+}
+.task-filters li {
+  float: left;
+}
+.task-filters li:not(:first-child) {
+  margin-left: 12px;
+}
+.task-filters li:not(:first-child):before {
+  padding-right: 12px;
+  content: "/";
+  font-weight: 300;
+}
+.task-filters a {
+  color: #999;
+  text-decoration: none;
+}
+.task-filters a.active {
+  color: #fff;
+}

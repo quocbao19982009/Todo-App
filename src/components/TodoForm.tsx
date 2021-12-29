@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from "react";
 import TodoModel from "../models/todo";
 import { TodoContext } from "../store/store-todo";
 import classes from "./TodoForm.module.css";
+import TaskFilters from "./TaskFilters";
 
 const TodoForm = () => {
   const [loading, setLoading] = useState(false);
@@ -39,6 +40,7 @@ const TodoForm = () => {
           ref={inputRef}
         ></input>
       </form>
+      <TaskFilters />
     </div>
   );
 };
