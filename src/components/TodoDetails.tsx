@@ -15,7 +15,7 @@ const TodoDetails = ({ todo }: TodoDetailsProps) => {
   const checkTodo = todoCtx.checkTodo;
   const updateTodo = todoCtx.updateTodo;
 
-  const removeTodoHanlder = (code: string) => {
+  const removeTodoHanlder = () => {
     removeTodo(todo.code!);
   };
 
@@ -40,6 +40,7 @@ const TodoDetails = ({ todo }: TodoDetailsProps) => {
   const todo_editing = editing ? classes["todo-item_editing"] : "";
 
   const hide = editing ? classes.hide : "";
+
   return (
     <div className={`${classes.todo_item} ${todo_completed} ${todo_editing}`}>
       <div className={classes.cell}>
@@ -59,7 +60,6 @@ const TodoDetails = ({ todo }: TodoDetailsProps) => {
             type="text"
             value={todoText}
             onChange={(e) => setTodoText(e.target.value)}
-            onBlur={() => console.log("save")}
           ></input>
         )}
       </div>
