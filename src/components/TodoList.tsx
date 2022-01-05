@@ -21,7 +21,7 @@ const TodoList: React.FC<{ todoList: TodoModel[]; filterOrder: filter }> = ({
   const activeTodos =
     filterOrder === filter.active &&
     todoList
-      .filter((todo) => todo.complete !== undefined)
+      .filter((todo) => todo.complete === false)
       .map((todo) => <TodoDetails key={todo.id} todo={todo} />);
 
   const count = getItemCount(allTodos, completedTodos, activeTodos);

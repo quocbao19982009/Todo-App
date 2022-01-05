@@ -47,6 +47,7 @@ const TodoDetails = ({ todo }: TodoDetailsProps) => {
         <button
           className={`${classes.icon} ${classes.checkIcon} ${hide}`}
           onClick={checkTodoHandler.bind(null, todo.id)}
+          aria-label={`Toggle '${todoText}' completed`}
         >
           <i className="far fa-check-circle"></i>
         </button>
@@ -67,12 +68,14 @@ const TodoDetails = ({ todo }: TodoDetailsProps) => {
         <button
           className={`${classes.icon} ${hide}`}
           onClick={() => setEditing(true)}
+          aria-label={`Edit '${todoText}'`}
         >
           <i className="fas fa-edit"></i>
         </button>
         <button
           className={`${classes.icon} ${hide}`}
           onClick={removeTodoHanlder.bind(null, todo.id)}
+          aria-label={`Delete '${todoText}'`}
         >
           <i className="fas fa-eraser"></i>
         </button>
