@@ -2,6 +2,7 @@ import classes from "./TodoList.module.css";
 import TodoDetails from "./TodoDetails";
 import TodoModel, { filter } from "../models/todo";
 import { getItemCount } from "../utils/count";
+import TodoCount from "./TodoCount";
 
 const TodoList: React.FC<{ todoList: TodoModel[]; filterOrder: filter }> = ({
   todoList,
@@ -20,14 +21,15 @@ const TodoList: React.FC<{ todoList: TodoModel[]; filterOrder: filter }> = ({
   const activeTodos =
     filterOrder === filter.active &&
     todoList
-      .filter((todo) => todo.complete === false || true)
+      .filter((todo) => todo.complete !== undefined)
       .map((todo) => <TodoDetails key={todo.id} todo={todo} />);
 
   const count = getItemCount(allTodos, completedTodos, activeTodos);
 
   return (
     <div className={classes.todoList}>
-      <p>{count} Todos</p>
+      <TodoCount count={count} />
+
       {allTodos}
       {completedTodos}
       {activeTodos}
