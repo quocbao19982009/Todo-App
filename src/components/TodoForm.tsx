@@ -1,14 +1,12 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef } from "react";
 import TodoModel from "../models/todo";
-import { TodoContext } from "../store/store-todo";
 import classes from "./TodoForm.module.css";
 import TaskFilters from "./TaskFilters";
 
-const TodoForm = () => {
+const TodoForm: React.FC<{ addTodo: (todo: TodoModel) => void }> = ({
+  addTodo,
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const todoCtx = useContext(TodoContext);
-  const addTodo = todoCtx.addTodo;
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();

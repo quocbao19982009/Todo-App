@@ -1,20 +1,11 @@
-import React, { useContext, useEffect } from "react";
-import { TodoContext } from "../store/store-todo";
 import classes from "./TodoList.module.css";
 import TodoDetails from "./TodoDetails";
-import { filter } from "../models/todo";
+import TodoModel, { filter } from "../models/todo";
 
-const TodoList = () => {
-  const todoCtx = useContext(TodoContext);
-
-  const todoList = todoCtx.todoList;
-  const getTodo = todoCtx.getTodo;
-  const filterOrder = todoCtx.filter;
-
-  useEffect(() => {
-    getTodo();
-  }, []);
-
+const TodoList: React.FC<{ todoList: TodoModel[]; filterOrder: filter }> = ({
+  todoList,
+  filterOrder,
+}) => {
   const allTodos =
     filterOrder === filter.all &&
     todoList.map((todo) => <TodoDetails key={todo.id} todo={todo} />);
