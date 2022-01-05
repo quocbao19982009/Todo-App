@@ -42,5 +42,8 @@
   },
   "engines": {
     "npm": "^8.1.2"
+  },
+  "devDependencies": {
+    "cypress": "^9.2.0"
   }
 }
