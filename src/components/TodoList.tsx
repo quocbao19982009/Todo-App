@@ -28,7 +28,7 @@ const TodoList = () => {
   const activeTodos =
     filterOrder === filter.active &&
     todoList
-      .filter((todo) => todo.complete === false)
+      .filter((todo) => todo.complete === false || true)
       .map((todo) => <TodoDetails key={todo.id} todo={todo} />);
 
   return (
