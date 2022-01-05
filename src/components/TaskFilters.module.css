@@ -1,5 +1,5 @@
 .task-filters {
-  margin-bottom: 45px;
+  margin-bottom: 25px;
   padding-left: 1px;
   font-size: 1rem;
   line-height: 24px;
@@ -12,7 +12,7 @@
 }
 @media screen and (min-width: 33.75em) {
   .task-filters {
-    margin-bottom: 55px;
+    margin-bottom: 35px;
   }
 }
 .task-filters li {
