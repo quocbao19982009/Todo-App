@@ -2,8 +2,7 @@ interface TodoModel {
   text: string;
   id: string;
   complete: boolean;
-  createdAt?: string;
-  code?: string;
+  createdAt: string;
 }
 
 export enum filter {

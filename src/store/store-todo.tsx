@@ -1,5 +1,4 @@
 import React, { useState, createContext } from "react";
-import TodoList from "../components/TodoList";
 import {
   getTodosAPI,
   addTodosAPI,
@@ -46,43 +45,38 @@ const TodoContextProvider: React.FC = (props) => {
   };
 
   const addTodoHandler = async (todo: TodoModel) => {
-    let code;
-    code = await addTodosAPI({ ...todo, createdAt: new Date().toISOString() });
-    const newTodo: TodoModel = {
-      code: code.name,
-      ...todo,
-      createdAt: new Date().toISOString(),
-    };
+    await addTodosAPI(todo);
+
     setTodos((prevTodos) => {
-      return prevTodos.concat(newTodo);
+      return prevTodos.concat(todo);
     });
   };
 
-  const removeTodoHanlder = async (code: string) => {
-    await removeTodoAPI(code);
+  const removeTodoHanlder = async (id: string) => {
+    await removeTodoAPI(id);
     setTodos((prevTodos) => {
-      return prevTodos.filter((todo) => todo.code !== code);
+      return prevTodos.filter((todo) => todo.id !== id);
     });
   };
 
-  const checkTodoHandler = async (code: string) => {
-    const targetTodoIndex = todos.findIndex((todo) => todo.code === code);
+  const checkTodoHandler = async (id: string) => {
+    const targetTodoIndex = todos.findIndex((todo) => todo.id === id);
     const targetTodo = todos[targetTodoIndex];
     const updateTodo = { ...targetTodo, complete: !targetTodo.complete };
     let updateTodos = [...todos];
     updateTodos[targetTodoIndex] = updateTodo;
     setTodos(updateTodos);
-    await checkTodoAPI(code, !targetTodo.complete);
+    await checkTodoAPI(id, !targetTodo.complete);
   };
 
-  const updatingTodoHandler = async (code: string, textInput: string) => {
-    const targetTodoIndex = todos.findIndex((todo) => todo.code === code);
+  const updatingTodoHandler = async (id: string, textInput: string) => {
+    const targetTodoIndex = todos.findIndex((todo) => todo.id === id);
     const targetTodo = todos[targetTodoIndex];
     const updateTodo: TodoModel = { ...targetTodo, text: textInput };
     let updateTodos = [...todos];
     updateTodos[targetTodoIndex] = updateTodo;
     setTodos(updateTodos);
-    await editTodoAPI(code, textInput);
+    await editTodoAPI(id, textInput);
   };
 
   const todoContextValue: TodoContextInterface = {

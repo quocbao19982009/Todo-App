@@ -26,10 +26,13 @@
   content: "/";
   font-weight: 300;
 }
-.task-filters a {
+.task-filters button {
   color: #999;
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
-.task-filters a.active {
+.task-filters button.active {
   color: #fff;
 }

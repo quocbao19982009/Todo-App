@@ -2,108 +2,92 @@ import TodoModel from "../models/todo";
 
 export const addTodosAPI = async (todo: TodoModel) => {
   try {
-    const response = await fetch(
-      "https://todo-app-16d97-default-rtdb.europe-west1.firebasedatabase.app/todoList.json",
-      {
-        method: "POST",
-        body: JSON.stringify({ ...todo }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const todos: {
+      [key: string]: {
+        complete: boolean;
+        createdAt: string;
+        id: string;
+        text: string;
+      };
+    } = JSON.parse(localStorage.getItem("todos") || "{}");
 
-    if (!response.ok) {
-      throw new Error("Sending Todo Fail");
-    }
+    todos[todo.id] = todo;
 
-    const data = await response.json();
-    return data;
+    localStorage.setItem("todos", JSON.stringify(todos));
   } catch (e) {
     throw new Error("Sending Todo Fail");
   }
 };
 
-export const removeTodoAPI = async (code: string) => {
+export const removeTodoAPI = async (id: string) => {
   try {
-    const response = await fetch(
-      `https://todo-app-16d97-default-rtdb.europe-west1.firebasedatabase.app/todoList/${code}.json`,
-      {
-        method: "DELETE",
-      }
-    );
-    if (!response.ok) {
-      throw new Error("Delete Todo Fail");
-    }
+    const todos: {
+      [key: string]: {
+        complete: boolean;
+        createdAt: string;
+        id: string;
+        text: string;
+      };
+    } = JSON.parse(localStorage.getItem("todos") || "{}");
+
+    delete todos[id];
+
+    localStorage.setItem("todos", JSON.stringify(todos));
   } catch (error) {
     throw new Error("Cannot Delete Todos");
   }
 };
 
-export const editTodoAPI = async (code: string, updateText: string) => {
+export const editTodoAPI = async (id: string, updateText: string) => {
   try {
-    const response = await fetch(
-      `https://todo-app-16d97-default-rtdb.europe-west1.firebasedatabase.app/todoList/${code}.json`,
-      {
-        method: "PATCH",
-        body: JSON.stringify({ text: updateText }),
-      }
-    );
+    const todos: {
+      [key: string]: {
+        complete: boolean;
+        createdAt: string;
+        id: string;
+        text: string;
+      };
+    } = JSON.parse(localStorage.getItem("todos") || "{}");
 
-    if (!response.ok) {
-      throw new Error("Updating Todo Fail");
-    }
-    const data = await response.json();
+    todos[id].text = updateText;
 
-    console.log(response);
+    localStorage.setItem("todos", JSON.stringify(todos));
   } catch (error) {
     throw new Error("Updating Todo Fail");
   }
 };
 
-export const checkTodoAPI = async (code: string, updateComplete: boolean) => {
+export const checkTodoAPI = async (id: string, updateComplete: boolean) => {
   try {
-    const response = await fetch(
-      `https://todo-app-16d97-default-rtdb.europe-west1.firebasedatabase.app/todoList/${code}.json`,
-      {
-        method: "PATCH",
-        body: JSON.stringify({ complete: updateComplete }),
-      }
-    );
+    const todos: {
+      [key: string]: {
+        complete: boolean;
+        createdAt: string;
+        id: string;
+        text: string;
+      };
+    } = JSON.parse(localStorage.getItem("todos") || "{}");
 
-    if (!response.ok) {
-      throw new Error("Updating Todo Fail");
-    }
+    todos[id].complete = updateComplete;
+
+    localStorage.setItem("todos", JSON.stringify(todos));
   } catch (error) {
     throw new Error("Updating Todo Fail");
   }
 };
 
-export const getTodosAPI = async () => {
+export const getTodosAPI = () => {
   try {
-    const response = await fetch(
-      "https://todo-app-16d97-default-rtdb.europe-west1.firebasedatabase.app/todoList.json"
-    );
+    const todos: {
+      [key: string]: {
+        complete: boolean;
+        createdAt: string;
+        id: string;
+        text: string;
+      };
+    } = JSON.parse(localStorage.getItem("todos") || "{}");
 
-    if (!response.ok) {
-      throw new Error("Cannot get Todos, please check source");
-    }
-
-    const data = await response.json();
-
-    const loadedTodos: TodoModel[] = [];
-
-    for (const key in data) {
-      loadedTodos.push({
-        code: key,
-        id: data[key].id,
-        text: data[key].text,
-        createdAt: data[key].createdAt,
-        complete: data[key].complete,
-      });
-    }
-
-    return loadedTodos;
+    return Object.values(todos);
   } catch (error) {
     throw new Error("Cannot get Todos");
   }

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import classes from "./TaskFilters.module.css";
 import { TodoContext } from "../store/store-todo";
 import { filter } from "../models/todo";
@@ -7,7 +7,6 @@ const TaskFilters = () => {
   const todoCtx = useContext(TodoContext);
   const changeFilter = todoCtx.changeFilter;
   const filterOrder = todoCtx.filter;
-  console.log(todoCtx);
 
   const changeFilterOrder = (filter: filter) => {
     changeFilter(filter);
@@ -16,28 +15,21 @@ const TaskFilters = () => {
   return (
     <ul className={classes["task-filters"]}>
       <li onClick={changeFilterOrder.bind(null, filter.all)}>
-        <a
-          className={filterOrder === filter.all ? classes.active : ""}
-          href="#"
-        >
+        <button className={filterOrder === filter.all ? classes.active : ""}>
           View All
-        </a>
+        </button>
       </li>
       <li onClick={changeFilterOrder.bind(null, filter.active)}>
-        <a
-          className={filterOrder === filter.active ? classes.active : ""}
-          href="#"
-        >
+        <button className={filterOrder === filter.active ? classes.active : ""}>
           Active
-        </a>
+        </button>
       </li>
       <li onClick={changeFilterOrder.bind(null, filter.completed)}>
-        <a
+        <button
           className={filterOrder === filter.completed ? classes.active : ""}
-          href="#"
         >
           Completed
-        </a>
+        </button>
       </li>
     </ul>
   );

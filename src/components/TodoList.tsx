@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { TodoContext } from "../store/store-todo";
 import classes from "./TodoList.module.css";
 import TodoDetails from "./TodoDetails";
-import TodoModel, { filter } from "../models/todo";
+import { filter } from "../models/todo";
 
 const TodoList = () => {
   const todoCtx = useContext(TodoContext);

@@ -16,15 +16,15 @@ const TodoDetails = ({ todo }: TodoDetailsProps) => {
   const updateTodo = todoCtx.updateTodo;
 
   const removeTodoHanlder = () => {
-    removeTodo(todo.code!);
+    removeTodo(todo.id);
   };
 
   const checkTodoHandler = () => {
-    checkTodo(todo.code!);
+    checkTodo(todo.id);
   };
 
   const saveEditTodoHandler = () => {
-    updateTodo(todo.code!, todoText);
+    updateTodo(todo.id, todoText);
     setEditing(false);
   };
 

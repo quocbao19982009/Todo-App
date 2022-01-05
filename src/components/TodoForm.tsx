@@ -1,13 +1,10 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import TodoModel from "../models/todo";
 import { TodoContext } from "../store/store-todo";
 import classes from "./TodoForm.module.css";
 import TaskFilters from "./TaskFilters";
 
 const TodoForm = () => {
-  const [loading, setLoading] = useState(false);
-  // Do i need loading here?
-
   const inputRef = useRef<HTMLInputElement>(null);
 
   const todoCtx = useContext(TodoContext);
@@ -19,6 +16,7 @@ const TodoForm = () => {
       text: inputRef.current!.value,
       id: new Date().getTime().toString(),
       complete: false,
+      createdAt: new Date().toISOString(),
     };
 
     if (newTodo.text.trim() === "") {
