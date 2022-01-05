@@ -21,8 +21,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cy:open": "cypress open",
-    "test:unit": "jest",
-    "test:e2e": "cypress run"
+    "test:e2e": "cypress run",
+    "test:unit": "react-scripts test --coverage"
   },
   "eslintConfig": {
     "extends": [
