@@ -23,11 +23,7 @@ const TodoList: React.FC<{ todoList: TodoModel[]; filterOrder: filter }> = ({
       .filter((todo) => todo.complete === false || true)
       .map((todo) => <TodoDetails key={todo.id} todo={todo} />);
 
-  const count = getItemCount(
-    allTodos || [],
-    completedTodos || [],
-    activeTodos || []
-  );
+  const count = getItemCount(allTodos, completedTodos, activeTodos);
 
   return (
     <div className={classes.todoList}>
